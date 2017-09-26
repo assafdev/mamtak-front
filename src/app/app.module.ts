@@ -8,6 +8,9 @@ import { AccountsComponent } from './accounts.component';
 import { AccountService } from './account.service';
 import { RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
+import { HttpModule } from '@angular/http';
+import { BankTableComponent } from './bank/bank-table.component';
+import { BlockImageComponent } from './block-screen/block-image.component';
 
 @NgModule({
   declarations: [
@@ -15,9 +18,12 @@ import { DashboardComponent } from './dashboard.component';
     AccountDetailComponent,
     AccountsComponent,
     DashboardComponent,
+    BankTableComponent,
+    BlockImageComponent
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     FormsModule,
     RouterModule.forRoot([
       {
@@ -33,6 +39,14 @@ import { DashboardComponent } from './dashboard.component';
       {
         path: 'dashboard',
         component: DashboardComponent
+      },
+      {
+        path: 'bank',
+        component: BankTableComponent
+      },
+      {
+        path: 'blockscreen',
+        component: BlockImageComponent
       },
     ])
   ],
