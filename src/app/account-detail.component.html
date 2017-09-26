@@ -1,0 +1,16 @@
+<div *ngIf="account">
+        Account details:
+        <div><label>id:</label>
+          <label [(innerText)] = "account.id"></label>
+        </div>
+        <div> <label>account area: </label>{{account.accountArea}}</div>
+        <div>
+            <label>admin name: </label>
+            <input [(ngModel)]="account.adminName" placeholder="name">
+          </div>
+        <div> <label>minCreditValue: </label> {{account.minCreditValue}}</div>
+        <div> <label>maxCreditValue: </label> {{account.maxCreditValue}}</div>
+        <div>  <label>moneyChannel: </label> {{account.moneyChannel}}</div>
+        <div>  <label>otherNotes: </label> {{account.otherNotes}}</div>
+      
+      </div>
