@@ -20,6 +20,10 @@ export class AccountService {
         return Promise.resolve(ACCOUNTS);
     }
 
+    getAccount(id: number): Promise<Account> {
+        return this.getAccounts().then(accounts => accounts.find(account => account.id === id));
+    }
+
     getAccountsResponsibilityFromHttp() {
         return this.http.get(this.localApiData).map(response => response.json());
     }

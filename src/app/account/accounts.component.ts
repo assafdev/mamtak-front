@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import {Account} from './account';
 import { AccountService } from './account.service';
-import { OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-accounts',
@@ -13,7 +13,7 @@ export class AccountsComponent implements OnInit {
   accounts: Account[];
   selectedAccount: Account;
 
-  constructor(private accountService: AccountService) {
+  constructor(private router: Router, private accountService: AccountService) {
   }
 
   ngOnInit(): void {
@@ -28,6 +28,9 @@ export class AccountsComponent implements OnInit {
     this.selectedAccount = account;
   }
 
+  gotoDetail(): void {
+    this.router.navigate(['/accountdetail', this.selectedAccount.id]);
+  }
 }
 
 

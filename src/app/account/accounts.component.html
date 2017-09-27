@@ -1,8 +1,6 @@
 <!--The content below is only a placeholder and can be replaced.-->
 
   
-  <h2>My Heroes</h2>
-
   <ul class="accounts">
         <li *ngFor="let account of accounts" 
         [class.selected]="account === selectedAccount"
@@ -14,4 +12,9 @@
         </li>
     </ul>
   
-    <app-account-detail [account]="selectedAccount"></app-account-detail>
+    <div *ngIf="selectedAccount">
+        <h2>
+          {{selectedAccount.adminName | uppercase}} is my account
+        </h2>
+        <button (click)="gotoDetail()">View Details</button>
+      </div>
