@@ -1,6 +1,6 @@
 import {Component , Input, OnInit} from '@angular/core';
-import {Account} from '../account';
-import { AccountService } from '../account.service';
+import {Account} from '../account/account';
+import { AccountService } from '../account/account.service';
 
 
 @Component({

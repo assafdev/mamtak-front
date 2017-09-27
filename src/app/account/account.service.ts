@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Account} from './account';
-import {ACCOUNTS} from './mock-accounts';
+import {ACCOUNTS} from '../account/mock-accounts';
 
 import { Http , Response} from '@angular/http';
 import 'rxjs/add/operator/map';

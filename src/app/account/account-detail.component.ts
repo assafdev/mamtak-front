@@ -3,8 +3,8 @@ import {Account} from './account';
 
 @Component({
   selector: 'app-account-detail',
-  templateUrl: './account-detail.component.html',
-  styleUrls: ['./account-detail.component.css']
+  templateUrl: '../account/account-detail.component.html',
+  styleUrls: ['../account/account-detail.component.css']
 })
 
 
