@@ -11,3 +11,23 @@
 
 <p-contextMenu #cm [model]="items"></p-contextMenu>
 <p-growl [(value)]="msgs"></p-growl>
+
+<button pButton type="button" (click)="addClickedEvent()" label="Click">Add</button>
+
+<div *ngIf = "addClicked">
+     <label>Area name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> <input #areaName /><br/>
+    <label>Admin name:&nbsp;&nbsp;&nbsp;&nbsp;</label> <input #adminName /><br/>
+    <label>Min value: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> <input #minValue /><br/>
+    <label>Max value: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label> <input #maxValue /><br/>
+    <label>Monney Channel:</label> <input #moneyChannel /><br/>
+    <label>Other notes: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> <input #otherNotes /><br/>
+  <button (click)="add(areaName.value, adminName.value , minValue.value , maxValue.value , moneyChannel.value , otherNotes.value);
+                     areaName.value='';
+                     adminName.value = '';
+                     minValue.value = '';
+                     maxValue.value = '';
+                     moneyChannel.value = '';
+                     otherNotes.value = '' ">
+    Save
+  </button>
+</div>

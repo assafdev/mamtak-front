@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TreeNode, MenuItem, Message } from 'primeng/primeng';
+import { TreeNode, MenuItem, Message , ButtonModule } from 'primeng/primeng';
 import { NodeService } from './nodeservice.service';
 @Component ({
     selector: 'app-treetable',
@@ -8,7 +8,8 @@ import { NodeService } from './nodeservice.service';
 })
 
 export class AccountsTreeTableComponent implements OnInit {
-
+    addClicked = false;
+    isEditable = false;
     files: TreeNode[];
     selectedFiles: TreeNode[];
     msgs: Message[];
@@ -18,7 +19,6 @@ export class AccountsTreeTableComponent implements OnInit {
         }
 
         ngOnInit() {
-            // sets up account
             this.nodeService.getFileSystem().then(files => this.files = files);
 
             this.setUpContextMenu(false);
@@ -101,10 +101,11 @@ export class AccountsTreeTableComponent implements OnInit {
     setUpContextMenu(showMerge: boolean) {
         this.items = [
             {label: 'View', icon: 'fa-search', command: (event) => this.viewNode(this.selectedFiles[0])},
-            {label: 'Delete', icon: 'fa-close', command: (event) => this.deleteNode(this.selectedFiles[0])}
+            {label: 'Delete', icon: 'fa-close', command: (event) => this.deleteNode(this.selectedFiles[0])},
+            {label: 'Edit', icon: 'fa-edit', command: (event) => this.editNode(this.selectedFiles[0])}
         ];
         if (showMerge) {
-            this.items.push ( {label: 'Merge', icon: 'fa-plus',
+            this.items.push ( {label: 'Merge', icon: 'fa-compress',
             command: (e) => this.mergeNodes(this.selectedFiles[0], this.selectedFiles[1])});
         }
     }
@@ -112,5 +113,38 @@ export class AccountsTreeTableComponent implements OnInit {
     combinedAreaName(firstName: string, secondName: string) {
         return firstName + ' ' + secondName;
     }
+
+    addClickedEvent() {
+        this.addClicked = !this.addClicked;
+    }
+
+    addNode() {
+        this.files.push(this.files[0]);
+        this.msgs = [];
+    }
+
+    add(accountArea: string, adminName: string,
+      minCreditValue: number, maxCreditValue: number, moneyChannel: number,
+       otherNotes: string) {
+           const newNode: TreeNode = {
+               data: {
+                   id : 100,
+                   accountArea,
+                   adminName,
+                   minCreditValue,
+                   maxCreditValue,
+                   moneyChannel,
+                   otherNotes,
+                   level: 0
+               }
+            };
+
+            this.files.push(newNode);
+            this.addClicked = false;
+        }
+
+        editNode(nodeFirst) {
+
+        }
 }
 
