@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { TreeNode, MenuItem, Message } from 'primeng/primeng';
+import { Component, OnInit} from '@angular/core';
+import {NgIf} from '@angular/common';
+import { TreeNode, ButtonModule ,MenuItem, Message } from 'primeng/primeng';
 import { NodeService } from './nodeservice.service';
+
 @Component ({
     selector: 'app-treetable',
     templateUrl: './accounts-treetable.component.html',
@@ -9,6 +11,7 @@ import { NodeService } from './nodeservice.service';
 
 export class AccountsTreeTableComponent implements OnInit {
 
+    addClicked: boolean = false;
     files: TreeNode[];
     selectedFiles: TreeNode[];
     msgs: Message[];
@@ -22,7 +25,8 @@ export class AccountsTreeTableComponent implements OnInit {
 
             this.items = [
                 {label: 'View', icon: 'fa-search', command: (event) => this.viewNode(this.selectedFiles[0])},
-                {label: 'Delete', icon: 'fa-close', command: (event) => this.deleteNode(this.selectedFiles[0])}
+                {label: 'Delete', icon: 'fa-close', command: (event) => this.deleteNode(this.selectedFiles[0])},
+                {label: 'Add',  command: (event) => this.addNode()}
             ];
         }
 
@@ -42,6 +46,7 @@ export class AccountsTreeTableComponent implements OnInit {
             this.msgs = [];
             this.msgs.push({severity: 'info', summary: 'Node Unselected', detail: event.node.data.name});
         }
+
 
     viewNode(node: TreeNode) {
         this.msgs = [];
@@ -71,8 +76,35 @@ export class AccountsTreeTableComponent implements OnInit {
         nodeFirst.parent = newNode;
         nodeSecond.parent = newNode;
         this.files.push(newNode);
-        //this.files = this.files.filter(f=> f.label )
-
     }
+
+    addClickedEvent(){
+        this.addClicked = !this.addClicked;
+    }
+
+    addNode(){
+
+        this.files.push(this.files[0]);
+        this.msgs = [];
+    }
+
+    add(accountArea: string, adminName: string,
+      minCreditValue: number, maxCreditValue: number, moneyChannel: number,
+       otherNotes: string){
+           const newNode: TreeNode ={
+               data: {
+                   id : 100,
+                   accountArea,
+                   adminName,
+                   minCreditValue,
+                   maxCreditValue,
+                   moneyChannel,
+                   otherNotes
+               }
+           }
+            this.files.push(newNode);
+           this.addClicked = false;
+        }
+    
 }
 
