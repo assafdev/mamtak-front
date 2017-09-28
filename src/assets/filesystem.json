@@ -9,7 +9,8 @@
                      "maxCreditValue": 32,
                      "moneyChannel": 5031 , 
                      "otherNotes": "etc..",
-                     "suppervisedAccounts": [] 
+                     "suppervisedAccounts": [],
+                     "level" : 0
                      }
 
             
@@ -22,7 +23,8 @@
                 "maxCreditValue": 23,
                 "moneyChannel": 5030 , 
                 "otherNotes": "etc..",
-                "suppervisedAccounts": [] 
+                "suppervisedAccounts": [] ,
+                "level" : 0
                 }
         },
         {
@@ -33,7 +35,8 @@
                 "maxCreditValue": 32,
                 "moneyChannel": 5032 , 
                 "otherNotes": "etc..",
-                "suppervisedAccounts": [] 
+                "suppervisedAccounts": [] ,
+                "level" : 0
                 }
         }
         ,
@@ -45,7 +48,8 @@
                 "maxCreditValue": 32,
                 "moneyChannel": 5555 , 
                 "otherNotes": "etc..",
-                "suppervisedAccounts": [] 
+                "suppervisedAccounts": [] ,
+                "level" : 0
                 },
                 "children":[
                 {
@@ -58,7 +62,8 @@
                         "maxCreditValue": 55,
                         "moneyChannel": 3010 , 
                         "otherNotes": "etc..",
-                        "suppervisedAccounts": [] 
+                        "suppervisedAccounts": [] ,
+                        "level" : 1
                     }
                 }]
         }

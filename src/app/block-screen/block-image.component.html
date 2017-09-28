@@ -1,1 +1,5 @@
-<div><img src="../../assets/mamtak.jpg"></div>
+
+<input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".jpg, .png">
+
+<h2><b>Last Update on : {{ Time  |  date:'medium' }} </b></h2>
+<img src="assets/{{Name}}">

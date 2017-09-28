@@ -1,8 +1,0 @@
-<h3>Random Accounts</h3>
-<div class="grid grid-pad">
-<a *ngFor="let account of accounts" class="col-1-4" [routerLink]="['/accountdetail', account.id]">
-  <a class="module account">
-    <h4>{{account.adminName}}</h4>
-  </a>
-</a>
-</div>

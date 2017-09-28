@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Http , Response} from '@angular/http';
 
 import {Account} from './account';
-import {ACCOUNTS} from '../account/mock-accounts';
 
 import 'rxjs/add/operator/map';
 
@@ -15,14 +14,6 @@ export class AccountService {
 
     constructor(private http: Http) {
 
-    }
-
-    getAccounts(): Promise<Account[]> {
-        return Promise.resolve(ACCOUNTS);
-    }
-
-    getAccount(id: number): Promise<Account> {
-        return this.getAccounts().then(accounts => accounts.find(account => account.id === id));
     }
 
     getAccountsResponsibilityFromHttp() {

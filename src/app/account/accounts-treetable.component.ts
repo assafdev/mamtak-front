@@ -18,24 +18,19 @@ export class AccountsTreeTableComponent implements OnInit {
         }
 
         ngOnInit() {
+            // sets up account
             this.nodeService.getFileSystem().then(files => this.files = files);
 
-            this.items = [
-                {label: 'View', icon: 'fa-search', command: (event) => this.viewNode(this.selectedFiles[0])},
-                {label: 'Delete', icon: 'fa-close', command: (event) => this.deleteNode(this.selectedFiles[0])}
-            ];
+            this.setUpContextMenu(false);
         }
 
         nodeSelect(event) {
-            this.msgs = [];
-            this.msgs.push({severity: 'info',
-            summary: 'Node Selected ' + this.selectedFiles[0].data.adminName
-            , detail: event.node.data.name});
-            if (this.selectedFiles.length === 2) {
-                this.items[2] = {label: 'Merge', icon: 'fa-plus',
-                 command: (e) => this.mergeNodes(this.selectedFiles[0], this.selectedFiles[1])};
+            if (this.selectedFiles.length === 2 &&
+             this.isMergeAllowed(this.selectedFiles[0], this.selectedFiles[1])) {
+
+                this.setUpContextMenu(true);
             } else {
-                this.items[2] = null;
+                this.setUpContextMenu(false);
             }
         }
         nodeUnselect(event) {
@@ -48,31 +43,74 @@ export class AccountsTreeTableComponent implements OnInit {
         this.msgs.push({severity: 'info', summary: 'Node Selected', detail: node.data.name});
     }
 
-    deleteNode(node: TreeNode) {
+    filterID(node: TreeNode, id: number) {
+        return node.data.id !== id;
+  }
+
+  deleteNode(node: TreeNode) {
+      const tempNodeName = node.data.name;
+      if (node.parent != null) {
         node.parent.children = node.parent.children.filter( n => n.data !== node.data);
-        this.msgs = [];
-        this.msgs.push({severity: 'info', summary: 'Node Deleted', detail: node.data.name});
-    }
+      } else {
+        this.files = this.files.filter(a => this.filterID(a, node.data.id));
+      }
+      this.msgs = [];
+      this.msgs.push({severity: 'info', summary: 'Node Deleted', detail: tempNodeName});
+  }
 
     mergeNodes(nodeFirst: TreeNode, nodeSecond: TreeNode) {
-        this.msgs = [];
-        this.msgs.push({severity: 'info', summary: 'TTT Node 1:' +
-                nodeFirst.data.adminName + 'Node 2:' + nodeSecond.data.adminName,
-                 detail: nodeSecond.data.name});
 
         const newNode: TreeNode = {
             data: {
-                adminName: 'TEST',
-                accountArea: 'TEST2',
+                accountArea: this.combinedAreaName(nodeFirst.data.accountArea, nodeSecond.data.accountArea),
+                adminName: nodeFirst.data.adminName,
+                minCreditValue: Math.min(nodeFirst.data.minCreditValue, nodeSecond.data.minCreditValue),
+                maxCreditValue: Math.max(nodeFirst.data.maxCreditValue, nodeSecond.data.maxCreditValue),
+                moneyChannel: nodeFirst.data.moneyChannel,
+                otherNotes: nodeFirst.data.otherNotes,
+                level: nodeFirst.data.level
             },
-            children: [nodeFirst, nodeSecond
-            ]
+            children: [nodeFirst, nodeSecond]
         };
-        nodeFirst.parent = newNode;
-        nodeSecond.parent = newNode;
-        this.files.push(newNode);
-        //this.files = this.files.filter(f=> f.label )
 
+        nodeFirst.parent = newNode;
+        nodeFirst.data.level += 1;
+
+        nodeSecond.parent = newNode;
+        nodeSecond.data.level += 1;
+
+        this.msgs = [];
+        this.msgs.push({severity: 'info', summary: 'New:' + newNode.data.level + '\n' +
+        'First:' + nodeFirst.data.level + '\n' +
+        'Second:' + nodeSecond.data.level + '\n'
+         , detail: nodeFirst.data.name});
+         this.msgs.push({severity: 'info', summary: nodeFirst.parent + ' '
+          , detail: nodeFirst.data.name});
+
+
+            this.files.splice(this.files.indexOf(nodeFirst), 0, (newNode));
+            this.files.splice(this.files.indexOf(nodeFirst), 1);
+            this.files.splice(this.files.indexOf(nodeSecond), 1);
+
+    }
+
+    isMergeAllowed(nodeFirst: TreeNode, nodeSecond: TreeNode) {
+            return nodeFirst.data.level === nodeSecond.data.level &&
+             nodeFirst.parent === nodeSecond.parent;
+    }
+    setUpContextMenu(showMerge: boolean) {
+        this.items = [
+            {label: 'View', icon: 'fa-search', command: (event) => this.viewNode(this.selectedFiles[0])},
+            {label: 'Delete', icon: 'fa-close', command: (event) => this.deleteNode(this.selectedFiles[0])}
+        ];
+        if (showMerge) {
+            this.items.push ( {label: 'Merge', icon: 'fa-plus',
+            command: (e) => this.mergeNodes(this.selectedFiles[0], this.selectedFiles[1])});
+        }
+    }
+
+    combinedAreaName(firstName: string, secondName: string) {
+        return firstName + ' ' + secondName;
     }
 }
 
