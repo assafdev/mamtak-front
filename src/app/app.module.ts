@@ -12,6 +12,10 @@ import { BankTableComponent } from './bank/bank-table.component';
 import { BlockImageComponent } from './block-screen/block-image.component';
 import { AccountDetailComponent } from './account/account-detail.component';
 import { AppRoutingModule } from './app-routing.module';
+import {TreeTableModule, SharedModule} from 'primeng/primeng';
+import { AccountsTreeTableComponent } from './account/accounts-treetable.component';
+
+
 
 @NgModule({
   declarations: [
@@ -20,14 +24,17 @@ import { AppRoutingModule } from './app-routing.module';
     AccountsComponent,
     DashboardComponent,
     BankTableComponent,
-    BlockImageComponent
+    BlockImageComponent,
+    AccountsTreeTableComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
-    AppRoutingModule
-  ],
+    AppRoutingModule,
+    TreeTableModule,
+    SharedModule
+    ],
   providers: [AccountService],
   bootstrap: [AppComponent]
 })

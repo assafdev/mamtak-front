@@ -10,7 +10,7 @@ import 'rxjs/add/operator/map';
 export class AccountService {
 
     private responsibilitiesUrl = 'api/accounts/all';
-    private localApiData = 'app/apidata/respos.json';
+    private localApiData = 'apidata/respos.json';
 
     constructor(private http: Http) {
 

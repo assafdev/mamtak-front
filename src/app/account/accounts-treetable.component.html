@@ -1,0 +1,10 @@
+<p-treeTable [value]="files" selectionMode="single" [(selection)]="selectedFiles" (onNodeSelect)="nodeSelect($event)">
+
+    <p-column field="accountArea" header="Account Area"></p-column>
+    <p-column field="adminName" header="Admin Name"></p-column>
+    <p-column field="minCreditValue" header="Min Credit"></p-column>
+    <p-column field="maxCreditValue" header="Max Credit"></p-column>
+    <p-column field="moneyChannel" header="Money Channel"></p-column>
+    <p-column field="otherNotes" header="Other Notes"></p-column>
+</p-treeTable>
+
