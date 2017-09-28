@@ -12,8 +12,10 @@ import { BankTableComponent } from './bank/bank-table.component';
 import { BlockImageComponent } from './block-screen/block-image.component';
 import { AccountDetailComponent } from './account/account-detail.component';
 import { AppRoutingModule } from './app-routing.module';
-import {TreeTableModule, SharedModule} from 'primeng/primeng';
+import { TreeTableModule, SharedModule} from 'primeng/primeng';
+import { ContextMenuModule, GrowlModule } from 'primeng/primeng';
 import { AccountsTreeTableComponent } from './account/accounts-treetable.component';
+
 
 
 
@@ -33,7 +35,9 @@ import { AccountsTreeTableComponent } from './account/accounts-treetable.compone
     FormsModule,
     AppRoutingModule,
     TreeTableModule,
-    SharedModule
+    SharedModule,
+    ContextMenuModule,
+    GrowlModule
     ],
   providers: [AccountService],
   bootstrap: [AppComponent]

@@ -1,4 +1,5 @@
-<p-treeTable [value]="files" selectionMode="single" [(selection)]="selectedFiles" (onNodeSelect)="nodeSelect($event)">
+<p-treeTable [value]="files" selectionMode="multiple" [(selection)]="selectedFiles"
+ (onNodeSelect)="nodeSelect($event)" (onNodeUnselect)="nodeUnselect($event)" [contextMenu]="cm">
 
     <p-column field="accountArea" header="Account Area"></p-column>
     <p-column field="adminName" header="Admin Name"></p-column>
@@ -8,3 +9,5 @@
     <p-column field="otherNotes" header="Other Notes"></p-column>
 </p-treeTable>
 
+<p-contextMenu #cm [model]="items">a</p-contextMenu>
+<p-growl [(value)]="msgs"></p-growl>
