@@ -28,8 +28,15 @@ export class AccountsTreeTableComponent implements OnInit {
 
         nodeSelect(event) {
             this.msgs = [];
-            this.msgs.push({severity: 'info', summary: 'Node Selected ' + this.selectedFiles[0].data.adminName
+            this.msgs.push({severity: 'info',
+            summary: 'Node Selected ' + this.selectedFiles[0].data.adminName
             , detail: event.node.data.name});
+            if (this.selectedFiles.length === 2) {
+                this.items[2] = {label: 'Merge', icon: 'fa-plus',
+                 command: (e) => this.mergeNodes(this.selectedFiles[0], this.selectedFiles[1])};
+            } else {
+                this.items[2] = null;
+            }
         }
         nodeUnselect(event) {
             this.msgs = [];
@@ -45,6 +52,27 @@ export class AccountsTreeTableComponent implements OnInit {
         node.parent.children = node.parent.children.filter( n => n.data !== node.data);
         this.msgs = [];
         this.msgs.push({severity: 'info', summary: 'Node Deleted', detail: node.data.name});
+    }
+
+    mergeNodes(nodeFirst: TreeNode, nodeSecond: TreeNode) {
+        this.msgs = [];
+        this.msgs.push({severity: 'info', summary: 'TTT Node 1:' +
+                nodeFirst.data.adminName + 'Node 2:' + nodeSecond.data.adminName,
+                 detail: nodeSecond.data.name});
+
+        const newNode: TreeNode = {
+            data: {
+                adminName: 'TEST',
+                accountArea: 'TEST2',
+            },
+            children: [nodeFirst, nodeSecond
+            ]
+        };
+        nodeFirst.parent = newNode;
+        nodeSecond.parent = newNode;
+        this.files.push(newNode);
+        //this.files = this.files.filter(f=> f.label )
+
     }
 }
 
