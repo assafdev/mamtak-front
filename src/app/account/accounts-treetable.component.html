@@ -10,14 +10,14 @@
 </p-treeTable>
 
 <button pButton type="button" (click)="addClickedEvent()" label="Click">Add</button>
-
+<br/><br/><br/>
 <div *ngIf = "addClicked">
-     <label>Area name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> <input #areaName /><br/>
-    <label>Admin name:&nbsp;&nbsp;&nbsp;&nbsp;</label> <input #adminName /><br/>
-    <label>Min value: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> <input #minValue /><br/>
-    <label>Max value: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label> <input #maxValue /><br/>
-    <label>Monney Channel:</label> <input #moneyChannel /><br/>
-    <label>Other notes: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> <input #otherNotes /><br/>
+    <label>Area name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> <input #areaName pInputText/><br/>
+    <label>Admin name:&nbsp;&nbsp;&nbsp;&nbsp;</label> <input #adminName pInputText/><br/>
+    <label>Min value: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> <input #minValue pInputText/><br/>
+    <label>Max value: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label> <input #maxValue pInputText/><br/>
+    <label>Monney Channel:</label> <input #moneyChannel pInputText/><br/>
+    <label>Other notes: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> <input #otherNotes pInputText/><br/>
   <button (click)="add(areaName.value, adminName.value , minValue.value , maxValue.value , moneyChannel.value , otherNotes.value);
                      areaName.value='';
                      adminName.value = '';
