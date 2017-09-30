@@ -31,7 +31,7 @@
             "data":{ "id": 3,
                 "accountArea": "Haifa N", 
                 "adminName": "Yakooza" , 
-                "minCreditValue": 17,
+                "minCreditValue": 26,
                 "maxCreditValue": 32,
                 "moneyChannel": 5032 , 
                 "otherNotes": "etc..",
@@ -42,30 +42,66 @@
         ,
         {
             "data":{ "id": 4,
-                "accountArea": "Tel Avivo Center", 
-                "adminName": "Assaf" , 
-                "minCreditValue": 23,
-                "maxCreditValue": 32,
-                "moneyChannel": 5555 , 
+                "accountArea": "Haifa S", 
+                "adminName": "Hadoop" , 
+                "minCreditValue": 17,
+                "maxCreditValue": 25,
+                "moneyChannel": 5033 , 
                 "otherNotes": "etc..",
                 "suppervisedAccounts": [] ,
                 "level" : 0
-                },
-                "children":[
-                {
-                    
-                    "data":{
-                        "id": 5,
-                        "accountArea": "Frishman", 
-                        "adminName": "Tomer" , 
-                        "minCreditValue": 25,
-                        "maxCreditValue": 55,
-                        "moneyChannel": 3010 , 
-                        "otherNotes": "etc..",
-                        "suppervisedAccounts": [] ,
-                        "level" : 1
-                    }
-                }]
+                }
+        },
+
+        {
+            "data":{ "id": 6,
+                "accountArea": "Frishman N", 
+                "adminName": "Gilad" , 
+                "minCreditValue": 24,
+                "maxCreditValue": 27,
+                "moneyChannel": 5045 , 
+                "otherNotes": "etc..",
+                "suppervisedAccounts": [] ,
+                "level" : 0
+                }
+        },
+        {
+            "data":{ "id": 7,
+                "accountArea": "Frishman S", 
+                "adminName": "Raz" , 
+                "minCreditValue": 17,
+                "maxCreditValue": 24,
+                "moneyChannel": 5050 , 
+                "otherNotes": "etc..",
+                "suppervisedAccounts": [] ,
+                "level" : 0
+                }
         }
+        ,
+        {
+            "data":{ "id": 8,
+                "accountArea": "Nativot S", 
+                "adminName": "Shalev" , 
+                "minCreditValue": 17,
+                "maxCreditValue": 24,
+                "moneyChannel": 5056 , 
+                "otherNotes": "etc..",
+                "suppervisedAccounts": [] ,
+                "level" : 0
+                }
+        }, 
+        {
+            "data":{ "id": 8,
+                "accountArea": "Nativot N", 
+                "adminName": "Daniel" , 
+                "minCreditValue": 24,
+                "maxCreditValue": 27,
+                "moneyChannel": 5059 , 
+                "otherNotes": "etc..",
+                "suppervisedAccounts": [] ,
+                "level" : 0
+                }
+        }
+        
     ]
 }

@@ -55,7 +55,7 @@ export class AccountsTreeTableComponent implements OnInit {
         this.files = this.files.filter(a => this.filterID(a, node.data.id));
       }
       this.msgs = [];
-      this.msgs.push({severity: 'info', summary: 'Node Deleted', detail: tempNodeName});
+      this.msgs.push({severity: 'info', summary: node.data.accountArea + ' Has Been Deleted', detail: tempNodeName});
   }
 
     mergeNodes(nodeFirst: TreeNode, nodeSecond: TreeNode) {
@@ -80,12 +80,11 @@ export class AccountsTreeTableComponent implements OnInit {
         nodeSecond.data.level += 1;
 
         this.msgs = [];
-        this.msgs.push({severity: 'info', summary: 'New:' + newNode.data.level + '\n' +
-        'First:' + nodeFirst.data.level + '\n' +
-        'Second:' + nodeSecond.data.level + '\n'
+        this.msgs.push({severity: 'info', summary: 'Two areas have been merged: '
+         + nodeFirst.data.accountArea + ' '
+          + ' and ' + nodeSecond.data.accountArea + ', ' + newNode.data.adminName + ' is now in charge.\n'
+         + '\n on channel: ' + newNode.data.moneyChannel + '\n'
          , detail: nodeFirst.data.name});
-         this.msgs.push({severity: 'info', summary: nodeFirst.parent + ' '
-          , detail: nodeFirst.data.name});
 
 
             this.files.splice(this.files.indexOf(nodeFirst), 0, (newNode));
